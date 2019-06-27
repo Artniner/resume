@@ -60,6 +60,8 @@ code[class*="language-"]::selection{
 	}
 }
 
+/*---------------------------------------代码高亮----------------------------------------*/
+/*
 .token.cdata,
 .token.comment,
 .token.doctype,
@@ -112,7 +114,7 @@ code[class*="language-"]::selection{
 .token.function{
 	color: #dd4a68;
 }
-
+Y
 .token.important,
 .token.regex,
 .token.variable{
@@ -131,3 +133,4 @@ code[class*="language-"]::selection{
 .token.entity{
 	cursor: help;
 }
+*/
