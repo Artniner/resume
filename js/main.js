@@ -10,62 +10,61 @@
 *str: 总字符串
 */
 
+var animateSpeed = 20;
+
 /*字符拼接*/
 var strArray = new Array();
 strArray[0] = '\n\
-	\/*我叫张三，来自广东深圳*\/\n\
-	\/*我今年10岁，毕业于哈佛商学院，吹牛大王专业*\/\n\
-	\/*接触前端一年，我的理想是当一名前端工程师*\/\n\
-	\/*来看看我为你准备的菜，先来点CSS，加点基本样式......*\/\n';
+	/**\n\
+	 *我叫张三，来自广东深圳\n\
+	 *我今年10岁，毕业于哈佛商学院，吹牛大王专业\n\
+	 *接触前端一年，我的理想是当一名前端工程师\n\
+	 *来看看我为你准备的菜，先来点CSS，加点基本样式......\n\
+	**/\n';
 strArray[1] = '\
-	body{\n\
+	*{\n\
+		-webkit-transition: all 1s;\n\
 		transition: all 1s;\n\
+	}\n\
+	body{\n\
 		background: #3f5263;\n\
 	}\n\
 	#sourceBoard{\n\
-		font-family: "微软雅黑";\n\
+		color: white;\n\
 		overflow: auto;\n\
-		border: 3px solid black;\n\
-		border-radius: 5px;\n\
-		width: 500px;\n\
-		height: 400px;\n\
+		border: 1px solid #ccc;\n\
+		width: 46%;\n\
+		height: 45%;\n\
+		font-family: "monospace";\n\
 		font-size: 14px;\n\
-		font-weight: 900;\n\
 	}\n';
 strArray[2] = '\t\/*似乎有点单调，那么就让语法高亮吧*\/\n';
 strArray[3] = '\
-	#sourceBoard{\n\
-		background: #ffffcc\n\
-	}\n\
-    .token.property{\n\
-		color: #905;\n\
-	}\n\
-	.token.comment{\n\
-		color: #cc3300;\n\
-	}\n\
-    .token.selector{\n\
-		color: #690;\n\
-	}\n';
+	#sourceBoard		{background: #303030;}\n\
+	.token.comment	{color: #857f6b; font-style: italic;}\n\
+	.token.selector	{color: #e69f0f;}\n\
+	.token.property	{color: #64d5ea;}\n'
 strArray[4] = '\t\/*接下来，我需要准备一下简历。先将刚才写的样式踢到一边儿去*\/\n';
 strArray[5] = '\
 	#sourceBoard{\n\
-		-webkit-transform: rotateY(10deg);\n\
-		-moz-transform: rotateX(10deg);\n\
-		position: relative;\n\
-		left: 65%;\n\
+		position: absolute;\n\
+		-webkit-transform: translate(115%, 2%);\n\
+		transform: translate(115%, 2%);\n\
+		height: 96%;\n\
 	}\n\
 	\/*OK,接下来开始准备简历板*\/\n';
 strArray[6] = '\
 	#drawBoard{\n\
-		color: #fff;\n\
-		float: left;\n\
-		position: relative;\n\
-		top: -440px;\n\
-		width: 860px;\n\
-		height: 600px;\n\
-		border: 5px solid black;\n\
-		border-radius: 5px;\n\
+		color: white;\n\
 		overflow: auto;\n\
+		border: 1px solid #ccc;\n\
+		width: 46%;\n\
+		height: 96%;\n\
+		font-family: "微软雅黑";\n\
+		font-size: 14px;\n\
+		position: absolute;\n\
+		-webkit-transform: translate(2%, 2%);\n\
+		transform: translate(2%, 2%);\n\
 	}\n';
 strArray[7] = '\n\
 # <center>张三_前端开发简历</center>\n\
@@ -110,18 +109,19 @@ strArray[8] = '\
 	*OK,这就是为您准备的菜，祝享用愉快！*/';
 strArray[9] = '\n';
 
+// 常规定义
 var styleTag = document.getElementById('styleTag');
 var sourceBoard = document.getElementById('sourceBoard');
 
 var wordsCount = 1;
 var strCount = 1;
 var str = strArray[0];
-
 var resumeWords = 1;
 
-var controller = setInterval(put,90);
+// 代码动画
+var controller = setInterval(put,animateSpeed);
 function put(){
-	if(strCount == 8){
+	if(strCount == 8){	//简历部分
 		document.getElementById('drawBoard').innerHTML = strArray[7].substring(0, resumeWords);
 		
 		$('#drawBoard').animate({
@@ -133,7 +133,7 @@ function put(){
 			strCount++;
 		}
 		resumeWords++;
-	}else{
+	}else{	//代码部分
 		if(strCount<=7){
 			sourceBoard.innerHTML = str.substring(0,wordsCount);
 			styleTag.innerHTML = str.substring(0,wordsCount);
@@ -153,10 +153,11 @@ function put(){
 			}
 		}
 		
-		if(wordsCount>=967){
+		// markdown
+	/*	if(wordsCount>=967){
 			document.getElementById('drawBoard').innerHTML = marked(strArray[7]);
 		}
-		
+	*/	
 		// 自动滚动
 		$('#sourceBoard').animate({
 			scrollTop: 1000
