@@ -48,8 +48,8 @@ strArray[4] = '\t\/*接下来，我需要准备一下简历。先将刚才写的
 strArray[5] = '\
 	#sourceBoard{\n\
 		position: absolute;\n\
-		-webkit-transform: translate(115%, 2%);\n\
-		transform: translate(115%, 2%);\n\
+		-webkit-transform: translate(110%, 2%);\n\
+		transform: translate(110%, 2%);\n\
 		height: 96%;\n\
 	}\n\
 	\/*OK,接下来开始准备简历板*\/\n';
@@ -63,8 +63,8 @@ strArray[6] = '\
 		font-family: "微软雅黑";\n\
 		font-size: 14px;\n\
 		position: absolute;\n\
-		-webkit-transform: translate(2%, 2%);\n\
-		transform: translate(2%, 2%);\n\
+		-webkit-transform: translate(5%, 2%);\n\
+		transform: translate(5%, 2%);\n\
 	}\n';
 strArray[7] = '\n\
 # <center>张三_前端开发简历</center>\n\
