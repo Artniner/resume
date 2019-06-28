@@ -55,11 +55,12 @@ strArray[5] = '\
 	\/*OK,接下来开始准备简历板*\/\n';
 strArray[6] = '\
 	#drawBoard{\n\
-		color: white;\n\
+		color: black;\n\
 		overflow: auto;\n\
 		border: 1px solid #ccc;\n\
 		width: 46%;\n\
 		height: 96%;\n\
+		background: #f7f0d4;\n\
 		font-family: "微软雅黑";\n\
 		font-size: 14px;\n\
 		position: absolute;\n\
@@ -100,14 +101,20 @@ strArray[7] = '\n\
 1. CSDN博客：[我的CSDN博客](http://blog.csdn.net/qq_20264891) \n\
 2. GitHub博客：[我的GitHub博客](https://ZQ-jhon.github.io)';
 strArray[8] = '\
-	\/*对了，这个简历是markdown语法，应该改成html才看着舒服。\n\
-	*接下来变个魔术\n\
-	*倒数3个数字\n\
-	*3......\n\
-	*2......\n\
-	*1......\n\
-	*OK,这就是为您准备的菜，祝享用愉快！*/';
-strArray[9] = '\n';
+	/**对了，这个简历是markdown语法，应该改成html才看着舒服。\n\
+	 *接下来变个魔术\n\
+	 *倒数3个数字\n\
+	 *3......\n\
+	 *2......\n\
+	 *1......\n\
+	 *OK,这就是为您准备的菜，祝享用愉快！\n\
+	**/\n';
+strArray[9] = '\t/*再来点特效*/\n';
+strArray[10] = '\
+	pre:hover{\n\
+		box-shadow: 0px 0px 40px 5px rgba(255, 255, 255, 0.4);\n\
+	}'
+strArray[11] = '\n';
 
 // 常规定义
 var styleTag = document.getElementById('styleTag');
@@ -122,11 +129,10 @@ var resumeWords = 1;
 var controller = setInterval(put,animateSpeed);
 function put(){
 	if(strCount == 8){	//简历部分
-		document.getElementById('drawBoard').innerHTML = strArray[7].substring(0, resumeWords);
+		var drawBoard = document.getElementById('drawBoard');
+		drawBoard.innerHTML = strArray[7].substring(0, resumeWords);
 		
-		$('#drawBoard').animate({
-			scrollTop: 1000
-		}, 50);
+		drawBoard.scrollTop = drawBoard.scrollHeight;
 		
 		if(resumeWords>=strArray[7].length){
 			str += strArray[8];
@@ -134,7 +140,7 @@ function put(){
 		}
 		resumeWords++;
 	}else{	//代码部分
-		if(strCount<=7){
+		if(strCount<=7 || strCount>=10){
 			sourceBoard.innerHTML = str.substring(0,wordsCount);
 			styleTag.innerHTML = str.substring(0,wordsCount);
 		}
@@ -158,18 +164,13 @@ function put(){
 			document.getElementById('drawBoard').innerHTML = marked(strArray[7]);
 		}
 	*/	
-		// 自动滚动
-		$('#sourceBoard').animate({
-			scrollTop: 1000
-		}, 50);
-		
+		sourceBoard.scrollTop = sourceBoard.scrollHeight;
 		
 		// 判断一条str是否完成
 		if(wordsCount>=str.length){
 			if(strCount != 7) str += strArray[strCount];
 			strCount++;
 		}
-		
 		
 		//console.log(wordsCount+str.substr(0,wordsCount).substr(-1));
 		
