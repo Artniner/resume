@@ -48,66 +48,85 @@ strArray[4] = '\t\/*接下来，我需要准备一下简历。先将刚才写的
 strArray[5] = '\
 	#sourceBoard{\n\
 		position: absolute;\n\
-		-webkit-transform: translate(115%, 2%);\n\
-		transform: translate(115%, 2%);\n\
+		-webkit-transform: translate(110%, 2%);\n\
+		transform: translate(110%, 2%);\n\
 		height: 96%;\n\
 	}\n\
 	\/*OK,接下来开始准备简历板*\/\n';
 strArray[6] = '\
 	#drawBoard{\n\
-		color: white;\n\
+		color: black;\n\
 		overflow: auto;\n\
 		border: 1px solid #ccc;\n\
-		width: 46%;\n\
+		width: 44%;\n\
 		height: 96%;\n\
+		background: #f7f0d4;\n\
 		font-family: "微软雅黑";\n\
 		font-size: 14px;\n\
 		position: absolute;\n\
-		-webkit-transform: translate(2%, 2%);\n\
-		transform: translate(2%, 2%);\n\
+		-webkit-transform: translate(5%, 2%);\n\
+		transform: translate(5%, 2%);\n\
 	}\n';
 strArray[7] = '\n\
-# <center>张三_前端开发简历</center>\n\
-----------------------------------------------\n\
-## 工作经历: ## \n\
-----------------------------------------------\n\
-### 1.一二三四五六七八九学校：音乐教师 ### \n\
-	"虽然跟前端无关，但是简历一定要写出来"。By腾讯HR \n\
-\n\
-### 2. 中国某某网 (政府媒体)：前端开发 ### \n\
-1.  专题设计\n\
-2.  频道维护\n\
-3.  对接后台搭建前端模版\n\
-4.  前端性能优化与前沿技术学习\n\
-5.  业务成就：\n\
-1.主导技术选型、方案设计、代码编写，完成中国某某网二级子频道页面进行响应式改版。\n\
-	>改版前 : http://news.lanzhou.cn/system/2018/01/27/011502919.shtml \n\
-	>改版后 : http://news.lanzhou.cn/system/2018/01/11/011492028.shtml \n\
-----------------------------------------------\n\
-### 技术栈 ### \n\
-----------------------------------------------\n\
-0. JavaScript/jQuery\n\
-1. Bootstrap\n\
-2. Nodejs\n\
-3. AngularJs\n\
-4. CSS3\n\
-5. Ajax\n\
-6. Webpack\n\
-### 项目汇总 ### \n\
-	[https://github.com/ZQ-jhon/-](https://github.com/ZQ-jhon/-) \n\
-### 博客\n\
-----------------------------------------------\n\
-1. CSDN博客：[我的CSDN博客](http://blog.csdn.net/qq_20264891) \n\
-2. GitHub博客：[我的GitHub博客](https://ZQ-jhon.github.io)';
+# 姓名\n\
+------------------------------\n\
+>性别：x  \n\
+>籍贯：xxxxxxx  \n\
+>生日：xxxx.xx  \n\
+>学历：xx  \n\
+>毕业院校：xxxxxx大学  \n\
+>手机：12345678900  \n\
+>邮箱：123456789@xx.com  \n\
+## 教育背景  \n\
+------------------------------  \n\
+>* xxxx.xx-xxxx.xx  xxxxxx大学  xxxx专业  \n\
+>* xxxx.xx-xxxx.xx  xxxxxx大学  xxxx专业  \n\
+## 项目经历  \n\
+------------------------------  \n\
+>* xxxx项目  \n\
+>* xxxx项目  \n\
+>* xxxx项目  \n\
+## 个人技能  \n\
+------------------------------  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+## 奖项荣誉  \n\
+-----------------------------  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+## 兴趣爱好  \n\
+-----------------------------  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+>* xxxx  \n\
+## 自我评价  \n\
+-----------------------------  \n\
+>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  \n\
+>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  \n\
+>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 strArray[8] = '\
-	\/*对了，这个简历是markdown语法，应该改成html才看着舒服。\n\
-	*接下来变个魔术\n\
-	*倒数3个数字\n\
-	*3......\n\
-	*2......\n\
-	*1......\n\
-	*OK,这就是为您准备的菜，祝享用愉快！*/';
-strArray[9] = '\n';
+	/**对了，这个简历是markdown语法，应该改成html才看着舒服。\n\
+	 *接下来变个魔术\n\
+	 *倒数3个数字\n\
+	 *3......\n\
+	 *2......\n\
+	 *1......\n\
+	**/\n';
+strArray[9] = '\t/*再来点特效*/\n';
+strArray[10] = '\
+	pre:hover{\n\
+		box-shadow: 0px 0px 40px 5px rgba(255, 255, 255, 0.4);\n\
+	}\n'
+strArray[11] = '\t/*看起来不是很美观，没关系，调整一下格式*/\n';
+strArray[12] = '\
+	#drawBoard{\n\
+		padding: 0 20px;\n\
+	}'
 
 // 常规定义
 var styleTag = document.getElementById('styleTag');
@@ -122,19 +141,19 @@ var resumeWords = 1;
 var controller = setInterval(put,animateSpeed);
 function put(){
 	if(strCount == 8){	//简历部分
-		document.getElementById('drawBoard').innerHTML = strArray[7].substring(0, resumeWords);
+		var drawBoard = document.getElementById('drawBoard');
+		drawBoard.innerHTML = strArray[7].substring(0, resumeWords);
 		
-		$('#drawBoard').animate({
-			scrollTop: 1000
-		}, 50);
+		drawBoard.scrollTop = drawBoard.scrollHeight;
 		
 		if(resumeWords>=strArray[7].length){
 			str += strArray[8];
 			strCount++;
 		}
+		
 		resumeWords++;
 	}else{	//代码部分
-		if(strCount<=7){
+		if(strCount<=7 || strCount>=10){
 			sourceBoard.innerHTML = str.substring(0,wordsCount);
 			styleTag.innerHTML = str.substring(0,wordsCount);
 		}
@@ -152,26 +171,22 @@ function put(){
 				document.body.appendChild(drawBoard);
 			}
 		}
-		
-		// markdown
-	/*	if(wordsCount>=967){
-			document.getElementById('drawBoard').innerHTML = marked(strArray[7]);
-		}
-	*/	
-		// 自动滚动
-		$('#sourceBoard').animate({
-			scrollTop: 1000
-		}, 50);
-		
+	
+		sourceBoard.scrollTop = sourceBoard.scrollHeight;
 		
 		// 判断一条str是否完成
 		if(wordsCount>=str.length){
+			// markdown
+			if(strCount == 9){
+				var drawBoard = document.getElementById('drawBoard');
+				drawBoard.style.cssText = 'white-space: normal';
+				drawBoard.innerHTML = marked(strArray[7]);
+			}
 			if(strCount != 7) str += strArray[strCount];
 			strCount++;
-		}
+		}		
 		
-		
-		//console.log(wordsCount+str.substr(0,wordsCount).substr(-1));
+		//console.log(strCount+' '+wordsCount+' '+str.substr(0,wordsCount).substr(-1));
 		
 		wordsCount++;
 	}
